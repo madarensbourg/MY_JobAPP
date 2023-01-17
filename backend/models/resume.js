@@ -6,11 +6,10 @@ const resumeSchema = new Schema({
 	name: { type: String, required: true },
     phonenumber: { type: String },
     email: { type: String },
-	contactTitle: { type: String, required: true },
-	aboutMe: { type: String },
+	aboutme: { type: String },
 	education: { type: String },
 	experience: { type: String },
-	references: { type: String },
+	relevantprojects: { type: String },
 	skills: { type: String },
 	
 });

@@ -17,18 +17,40 @@ router.get('/', async (req, res) => {
 });
 
 
-// Create Route without authentication for admin
+// Create Route without authentication 
 router.post('/', async (req, res) => {
 	const createdResume = await db.Resume.create(req.body);
 	res.json(createdResume);
 });
 
+// Show Route
+router.get('/:id', async (req, res) => {
+	const resume = await db.Resume.findById(req.params.id);
+	// console.log(trail._id)
+	res.json(resume);
+});
 
+// Delete Route without authentication 
+router.delete('/:id', async (req, res) => {
+	await db.Resume.findByIdAndDelete(req.params.id);
+	res.json({ status: 200 });
+});
 
+// Edit Route
+router.get('/:id', async (req, res) => {
+	const resume = await db.Resume.findById(req.params.id);
+	console.log(resume._id)
+	res.json(resume);
+});
 
-
-
-
-
+// Update Route without authentication for admin
+router.put('/:id', async (req, res) => {
+	const updatedResume = await db.Resume.findByIdAndUpdate(
+		req.params.id,
+		req.body,
+		{ new: true }
+	);
+	res.json(updatedResume);
+});
 
 module.exports = router;
