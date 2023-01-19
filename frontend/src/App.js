@@ -8,6 +8,9 @@ import Resumes from './pages/Resumes';
 import Coverletters from './pages/Coverletters';
 import ShowResume from './pages/ShowResume';
 import EditResume from './pages/EditResume';
+import CreateResume from './pages/CreateResume';
+import Header from './components/Header';
+import Login from './pages/Login'
 
 
 
@@ -49,9 +52,16 @@ function App() {
 
 	return (
 		<div className='App'>
-			<h1>welcome world</h1>
+			<Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+			<h1>Prepare For Your Dream Job Today!</h1>
 			<Routes>
 				<Route path='/' element={<Home />} />
+				<Route
+					path='/login'
+					element={
+						<Login setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+					}
+				/>
 				<Route
 					path='/signup'
 					element={
@@ -60,8 +70,9 @@ function App() {
 				/>
 				<Route
 					path='/resumes'
-					element={<Resumes myResumes={myResumes} getResume={getResume}/>}
+					element={<Resumes myResumes={myResumes} getResume={getResume} />}
 				/>
+				<Route path='/createresume' element={<CreateResume />} />
 				<Route
 					path='/coverletters'
 					element={

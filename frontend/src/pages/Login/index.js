@@ -1,18 +1,18 @@
+import { loginToAccount } from '../../utils/api';
 import { useState, useEffect } from 'react';
-import { createUser } from '../../utils/api';
-
 import { useNavigate } from 'react-router-dom';
-
 //STYLES
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 
-function SignUp(props) {
+export default function Login(props) {
 	const [formData, setFormData] = useState({
 		username: '',
 		password: '',
+		form: 'login',
 	});
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const navigate = useNavigate();
 
 	function handleChange(event) {
@@ -22,7 +22,7 @@ function SignUp(props) {
 	// Handle submit function for login and signup forms
 	function handleSubmit(e) {
 		e.preventDefault();
-		createUser(formData).then((data) => {
+		loginToAccount(formData).then((data) => {
 			localStorage.token = data.token;
 			props.setIsLoggedIn(true);
 		});
@@ -37,8 +37,8 @@ function SignUp(props) {
 
 	return (
 		<div>
-			<h2>Sign Up</h2>
-			<div className='row row-cols-sm-2 row-cols-md-4 mx-auto login'>
+			<h2>Login</h2>
+			<div className='row row-cols-sm-2 row-cols-md-4 mx-auto'>
 				<Form className='mb-3 mx-auto'>
 					<Form.Group className='mb-3' controlId='formBasicEmail'>
 						<Form.Label>Username</Form.Label>
@@ -64,13 +64,14 @@ function SignUp(props) {
 						/>
 					</Form.Group>
 
-					<Button variant='primary' type='submit' onClick={handleSubmit}>
-						Sign Up
+					<Button
+						variant='primary'
+						type='submit'
+						onClick={(e) => handleSubmit(e, formData)}>
+						Login
 					</Button>
 				</Form>
 			</div>
 		</div>
 	);
 }
-
-export default SignUp;
