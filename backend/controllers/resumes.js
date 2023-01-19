@@ -8,8 +8,6 @@ const jwt = require('jwt-simple');
 const config = require('../config/config');
 
 
-
-
 //index route
 router.get('/', async (req, res) => {
 	const allResume = await db.Resume.find({});
