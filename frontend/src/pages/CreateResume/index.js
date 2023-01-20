@@ -22,7 +22,7 @@ export default function CreateResume({ setResumeData }) {
 		event.preventDefault();
 
 		const configuration = new Configuration({
-			apiKey: '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',
+			apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 		});
 		const openai = new OpenAIApi(configuration);
 		const data = await openai.createCompletion({
@@ -182,7 +182,7 @@ export default function CreateResume({ setResumeData }) {
 						Search
 					</Button>
 				</Form>
-				<h2>Your Answer Here!</h2><br/>
+				<h2>Your Answer will Appear Here!</h2><br/>
 				<p>{response && response}</p>
 			</div>
 		</div>
