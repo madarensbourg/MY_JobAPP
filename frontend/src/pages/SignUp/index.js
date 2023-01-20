@@ -41,7 +41,7 @@ function SignUp(props) {
 			<div className='row row-cols-sm-2 row-cols-md-4 mx-auto login'>
 				<Form className='mb-3 mx-auto'>
 					<Form.Group className='mb-3' controlId='formBasicEmail'>
-						<Form.Label>Username</Form.Label>
+						<Form.Label>Email</Form.Label>
 						<Form.Control
 							type='email'
 							placeholder='Enter email'

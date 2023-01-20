@@ -1,15 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createResume } from '../../utils/api';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Configuration, OpenAIApi } from 'openai';
 
-export default function CreateResume() {
+export default function CreateResume({ setResumeData }) {
 	// STATE
 	const [formState, setFormState] = useState({});
 	const navigate = useNavigate();
+	const [searchString, setSearchString] = useState('');
+	const [response, setResponse] = useState();
+
+	function handleChange2(event) {
+		setSearchString(event.target.value);
+	}
+
+	async function handleSubmit2(event) {
+		event.preventDefault();
+
+		const configuration = new Configuration({
+			apiKey: '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',
+		});
+		const openai = new OpenAIApi(configuration);
+		const data = await openai.createCompletion({
+			model: 'text-davinci-003',
+			prompt: searchString,
+			temperature: 0.6,
+			max_tokens: 1399,
+			top_p: 1,
+			frequency_penalty: 1,
+			presence_penalty: 1,
+		});
+		// console.log(data.data.choices[0].text);
+		setResponse(data.data.choices[0].text);
+	}
 
 	const handleSubmit = (event) => {
 		// stops the page from reloading on submit
@@ -133,6 +160,30 @@ export default function CreateResume() {
 						Create Resume
 					</Button>
 				</Form>
+			</div>
+			<div>
+				<Form onSubmit={handleSubmit2} className='d-flex'>
+					<Form.Control
+						type='search'
+						placeholder='Stuck? Search here!'
+						className='me-2'
+						aria-label='Search'
+						name='searchString'
+						onChange={handleChange2}
+						value={searchString}
+					/>
+					<Button
+						type='submit'
+						variant='outline-success'
+						// onClick={() => {
+						// 	setUserData = {userData}
+						// }}
+					>
+						Search
+					</Button>
+				</Form>
+				<h2>Your Answer Here!</h2><br/>
+				<p>{response && response}</p>
 			</div>
 		</div>
 	);

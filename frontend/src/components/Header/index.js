@@ -33,9 +33,15 @@ export default function Header(props) {
 								console.log(localStorage.token);
 							}}>
 							Log Out
-						</Nav.Link>
-						<Nav.Link className='nav-item' href='/addtrail'>
-							Add Trail
+						</Nav.Link>{' '}
+						<Nav.Link className='nav-item' href='/createresume'>
+							Add Resume
+						</Nav.Link>{' '}
+						<Nav.Link className='nav-item' href='/'>
+							Home
+						</Nav.Link>{' '}
+						<Nav.Link className='nav-item' href='/createcoverletter'>
+							Create Cover Letter
 						</Nav.Link>
 					</Nav>
 				)
@@ -46,9 +52,12 @@ export default function Header(props) {
 					<Nav className='me-auto' key='2'>
 						<Nav.Link className='nav-item' href='/login' key='2'>
 							Log In
-						</Nav.Link>
+						</Nav.Link>{' '}
 						<Nav.Link className='nav-item' href='/signup' key='3'>
 							Sign Up
+						</Nav.Link>{' '}
+						<Nav.Link className='nav-item' href='/'>
+							Home
 						</Nav.Link>
 					</Nav>,
 				])
@@ -56,5 +65,5 @@ export default function Header(props) {
 		}
 	}, [props.isLoggedIn]);
 
-	return <div>index</div>;
+	return <div>{navItems}</div>;
 }

@@ -24,7 +24,7 @@ function App() {
 	const [user, setUser] = useState({});
 	const [shownResume, setShownResume] = useState({});
 	const [shownCoverletter, setShownCoverletter] = useState({});
-	// const [region, setRegion] = useState('');
+	const [resumeData, setResumeData] = useState([]);
 
 	// function to grab resumes
 	async function getResumes() {
@@ -55,7 +55,7 @@ function App() {
 			<Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
 			<h1>Prepare For Your Dream Job Today!</h1>
 			<Routes>
-				<Route path='/' element={<Home />} />
+				<Route path='/' element={<Home getResumes={getResumes} />} />
 				<Route
 					path='/login'
 					element={
@@ -72,7 +72,7 @@ function App() {
 					path='/resumes'
 					element={<Resumes myResumes={myResumes} getResume={getResume} />}
 				/>
-				<Route path='/createresume' element={<CreateResume />} />
+				<Route path='/createresume' element={<CreateResume setResumeData={setResumeData}/>} />
 				<Route
 					path='/coverletters'
 					element={
