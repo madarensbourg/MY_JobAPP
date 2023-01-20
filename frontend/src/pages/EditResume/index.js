@@ -34,12 +34,11 @@ function EditResume() {
 		<div className='row row-cols-sm-2 row-cols-md-4 mx-auto'>
 			<Form onSubmit={handleSubmit} className='mx-auto'>
 				<br></br>
-				<br></br>
-				<br></br>
+
 				<h3>Edit Resume</h3>
 
 				<Form.Group className='mb-3'>
-					<Form.Label>Name:</Form.Label>
+					<Form.Label>Name: </Form.Label>
 					<Form.Control
 						type='text'
 						id='name'
@@ -49,9 +48,10 @@ function EditResume() {
 						required
 					/>
 				</Form.Group>
+				<br />
 
 				<Form.Group className='mb-3'>
-					<Form.Label>Phone Number:</Form.Label>
+					<Form.Label>Phone Number: </Form.Label>
 					<Form.Control
 						type='text'
 						id='phonenumber'
@@ -61,9 +61,10 @@ function EditResume() {
 						required
 					/>
 				</Form.Group>
+				<br />
 
 				<Form.Group className='mb-3'>
-					<Form.Label>Email:</Form.Label>
+					<Form.Label>Email: </Form.Label>
 					<Form.Control
 						type='text'
 						id='email'
@@ -72,9 +73,10 @@ function EditResume() {
 						value={formState.email || ''}
 					/>
 				</Form.Group>
+				<br />
 
 				<Form.Group className='mb-3'>
-					<Form.Label>About Me:</Form.Label>
+					<Form.Label>About Me: </Form.Label>
 					<Form.Control
 						type='text'
 						id='aboutme'
@@ -83,9 +85,10 @@ function EditResume() {
 						value={formState.aboutme || ''}
 					/>
 				</Form.Group>
+				<br />
 
 				<Form.Group className='mb-3'>
-					<Form.Label>Education:</Form.Label>
+					<Form.Label>Education: </Form.Label>
 					<Form.Control
 						type='text'
 						id='education'
@@ -95,9 +98,10 @@ function EditResume() {
 						required
 					/>
 				</Form.Group>
+				<br />
 
 				<Form.Group className='mb-3'>
-					<Form.Label>Experience:</Form.Label>
+					<Form.Label>Experience: </Form.Label>
 					<Form.Control
 						type='text'
 						id='experience'
@@ -107,9 +111,10 @@ function EditResume() {
 						required
 					/>
 				</Form.Group>
+				<br />
 
 				<Form.Group className='mb-3'>
-					<Form.Label>Relevant Projects:</Form.Label>
+					<Form.Label>Relevant Projects: </Form.Label>
 					<Form.Control
 						type='text'
 						id='relevantprojects'
@@ -119,9 +124,10 @@ function EditResume() {
 						required
 					/>
 				</Form.Group>
+				<br />
 
 				<Form.Group className='mb-3'>
-					<Form.Label>Skills:</Form.Label>
+					<Form.Label>Skills: </Form.Label>
 					<Form.Control
 						type='text'
 						id='skills'
@@ -130,9 +136,12 @@ function EditResume() {
 						value={formState.skills || ''}
 					/>
 					<Form.Text className='text-muted'>
+						<br />
 						If you have any issues generating ideas, utlize the API below
 					</Form.Text>
+					<br />
 				</Form.Group>
+				<br />
 
 				<Button variant='primary' type='submit'>
 					Edit Resume

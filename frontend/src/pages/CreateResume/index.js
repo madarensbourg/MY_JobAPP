@@ -58,7 +58,7 @@ export default function CreateResume({ setResumeData }) {
 			<div className='row row-cols-sm-2 row-cols-md-4 mx-auto'>
 				<Form onSubmit={handleSubmit} className='mx-auto'>
 					<Form.Group className='mb-3'>
-						<Form.Label>Name:</Form.Label>
+						<Form.Label>Name: </Form.Label>
 						<Form.Control
 							type='text'
 							id='name'
@@ -69,9 +69,10 @@ export default function CreateResume({ setResumeData }) {
 							required
 						/>
 					</Form.Group>
+					<br />
 
 					<Form.Group className='mb-3'>
-						<Form.Label>Email:</Form.Label>
+						<Form.Label>Email: </Form.Label>
 						<Form.Control
 							type='text'
 							id='email'
@@ -82,9 +83,10 @@ export default function CreateResume({ setResumeData }) {
 							required
 						/>
 					</Form.Group>
+					<br />
 
 					<Form.Group className='mb-3'>
-						<Form.Label>Phone Number:</Form.Label>
+						<Form.Label>Phone Number: </Form.Label>
 						<Form.Control
 							type='text'
 							id='phonenumber'
@@ -94,9 +96,10 @@ export default function CreateResume({ setResumeData }) {
 							value={formState.phonenumber || ''}
 						/>
 					</Form.Group>
+					<br />
 
 					<Form.Group className='mb-3'>
-						<Form.Label>What Makes You Special?:</Form.Label>
+						<Form.Label>What Makes You Special?: </Form.Label>
 						<Form.Control
 							type='text'
 							id='aboutme'
@@ -107,9 +110,10 @@ export default function CreateResume({ setResumeData }) {
 							required
 						/>
 					</Form.Group>
+					<br />
 
 					<Form.Group className='mb-3'>
-						<Form.Label>Education:</Form.Label>
+						<Form.Label>Education: </Form.Label>
 						<Form.Control
 							type='text'
 							id='education'
@@ -119,9 +123,10 @@ export default function CreateResume({ setResumeData }) {
 							value={formState.education || ''}
 						/>
 					</Form.Group>
+					<br />
 
 					<Form.Group className='mb-3'>
-						<Form.Label>Experience:</Form.Label>
+						<Form.Label>Experience: </Form.Label>
 						<Form.Control
 							type='text'
 							id='experience'
@@ -131,9 +136,10 @@ export default function CreateResume({ setResumeData }) {
 							value={formState.experience || ''}
 						/>
 					</Form.Group>
+					<br />
 
 					<Form.Group className='mb-3'>
-						<Form.Label>Relevant Projects:</Form.Label>
+						<Form.Label>Relevant Projects: </Form.Label>
 						<Form.Control
 							type='text'
 							id='relevantprojects'
@@ -143,9 +149,10 @@ export default function CreateResume({ setResumeData }) {
 							value={formState.relevantprojects || ''}
 						/>
 					</Form.Group>
+					<br />
 
 					<Form.Group className='mb-3'>
-						<Form.Label>Relevant Skills:</Form.Label>
+						<Form.Label>Relevant Skills: </Form.Label>
 						<Form.Control
 							type='text'
 							id='skills'
@@ -155,6 +162,7 @@ export default function CreateResume({ setResumeData }) {
 							value={formState.skills || ''}
 						/>
 					</Form.Group>
+					<br />
 
 					<Button variant='primary' type='submit'>
 						Create Resume
@@ -162,6 +170,8 @@ export default function CreateResume({ setResumeData }) {
 				</Form>
 			</div>
 			<div>
+				<h2>Stuck? Ask the AI for Suggestions!</h2>
+			
 				<Form onSubmit={handleSubmit2} className='d-flex'>
 					<Form.Control
 						type='search'
@@ -172,6 +182,9 @@ export default function CreateResume({ setResumeData }) {
 						onChange={handleChange2}
 						value={searchString}
 					/>
+					<br />
+					<br />
+
 					<Button
 						type='submit'
 						variant='outline-success'
@@ -182,7 +195,8 @@ export default function CreateResume({ setResumeData }) {
 						Search
 					</Button>
 				</Form>
-				<h2>Your Answer will Appear Here!</h2><br/>
+				<h2>Your Answer will Appear Here!</h2>
+
 				<p>{response && response}</p>
 			</div>
 		</div>
