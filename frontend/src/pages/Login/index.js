@@ -7,12 +7,13 @@ import Form from 'react-bootstrap/Form';
 
 
 export default function Login(props) {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [formData, setFormData] = useState({
 		username: '',
 		password: '',
 		form: 'login',
 	});
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	
 	const navigate = useNavigate();
 
 	function handleChange(event) {

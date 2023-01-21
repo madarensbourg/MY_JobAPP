@@ -104,7 +104,7 @@ export default function CreateResume({ setResumeData }) {
 							type='text'
 							id='aboutme'
 							name='aboutme'
-							placeholder='Why do you love this trail?'
+							placeholder='Write about yourself'
 							onChange={handleChange}
 							value={formState.aboutme || ''}
 							required
@@ -131,7 +131,7 @@ export default function CreateResume({ setResumeData }) {
 							type='text'
 							id='experience'
 							name='experience'
-							placeholder='Enter Your Education'
+							placeholder='Enter Your Experience'
 							onChange={handleChange}
 							value={formState.experience || ''}
 						/>

@@ -11,6 +11,8 @@ import EditResume from './pages/EditResume';
 import CreateResume from './pages/CreateResume';
 import Header from './components/Header';
 import Login from './pages/Login'
+import EditCoverletter from './pages/EditCoverletter'
+import ShowCoverletter from './pages/ShowCoverletter';
 
 
 
@@ -25,6 +27,7 @@ function App() {
 	const [shownResume, setShownResume] = useState({});
 	const [shownCoverletter, setShownCoverletter] = useState({});
 	const [resumeData, setResumeData] = useState([]);
+	const [visibleItem, setVisibleItem] = useState({});
 
 	// function to grab resumes
 	async function getResumes() {
@@ -38,17 +41,75 @@ function App() {
 		);
 		setMyCoverLettters(allCoverletters.data);
 	}
-	// function to grab resumes 
+	// function to grab resumes
 	async function getResume(id) {
-		const shownResumeData = await axios.get(`http://localhost:5001/resume/${id}`);
+		const shownResumeData = await axios.get(
+			`http://localhost:5001/resume/${id}`
+		);
 		console.log('this is shownresume route data', shownResumeData.data);
 		setShownResume(shownResumeData.data);
 	}
+
+	// function to grab coverletters
+	async function getCoverletter(id) {
+		const shownCoverletterData = await axios.get(
+			`http://localhost:5001/coverletter/${id}`
+		);
+		console.log('this is showncoverletter route data', shownCoverletterData.data);
+		setShownCoverletter(shownCoverletterData.data);
+	}
+
 	useEffect(() => {
 		getResumes();
 		getCoverletters();
-
 	}, []);
+
+	//   async function getIndexRoute() {
+
+	// 	}
+
+	//  async function getUser() {
+	// 		const config = {
+	// 			headers: {
+	// 				Authorization: localStorage.getItem('token'),
+	// 			},
+	// 		};
+	// 		const userData = await axios.get('http://localhost:5001/user', config);
+	// 		console.log(userData.data);
+	// 		setUser(userData.data);
+	// 	}
+	// 	// API REQUEST ON COMPONENT MOUNT
+	// 	useEffect(() => {
+	// 		getIndexRoute();
+	// 		if (localStorage.token) {
+	// 			getUser();
+	// 			setIsLoggedIn(true);
+	// 		}
+	// 	}, []);
+
+	// 	// `onClick` HANDLER
+	// 	const setVisibility = (item) => {
+	// 		setVisibleItem(item);
+	// 	};
+
+	// 	const handleSubmit = async (e, formData) => {
+	// 		e.preventDefault();
+	// 		const res = await axios.post(
+	// 			`http://localhost:5001/user/${formData.form}`,
+	// 			{
+	// 				username: formData.username,
+	// 				password: formData.password,
+	// 			}
+	// 		);
+	// 		console.log(res.data);
+	// 		localStorage.token = res.data.token;
+	// 		setIsLoggedIn(true);
+	// 	};
+
+	// 	const handleLogOut = () => {
+	// 		localStorage.clear();
+	// 		setIsLoggedIn(false);
+	// 	};
 
 	return (
 		<div className='App'>
@@ -72,15 +133,13 @@ function App() {
 					path='/resumes'
 					element={<Resumes myResumes={myResumes} getResume={getResume} />}
 				/>
-				<Route path='/createresume' element={<CreateResume setResumeData={setResumeData}/>} />
+				<Route
+					path='/createresume'
+					element={<CreateResume setResumeData={setResumeData} />}
+				/>
 				<Route
 					path='/coverletters'
-					element={
-						<Coverletters
-							getCoverletters={getCoverletters}
-							myCoverletters={myCoverletters}
-						/>
-					}
+					element={<Coverletters getCoverletter={getCoverletter} myCoverletters={myCoverletters} />}
 				/>
 				<Route
 					exact
@@ -93,7 +152,18 @@ function App() {
 						/>
 					}
 				/>
+				<Route
+					exact
+					path='/mycoverletter/:id'
+					element={
+						<ShowCoverletter
+							shownCoverletter={shownCoverletter}
+							isLoggedIn={isLoggedIn}
+						/>
+					}
+				/>
 				<Route path='/editresume/:id' element={<EditResume />} />
+				<Route path='/editcoverletter/:id' element={<EditCoverletter />} />
 			</Routes>
 		</div>
 	);
