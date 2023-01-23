@@ -1,7 +1,6 @@
-# MY_JobAPP
-# MyJob
+# MyJob APP
 A space to upload, write and save Resumes and Cover Letters. Future versions will incorporate more specific user profiles.
-## Deployed Application through Firebase
+## Deployed Application through Heroku
 [My Job App](https://my-job-app.herokuapp.com/)
 ## Technologies Used
 - React JS
