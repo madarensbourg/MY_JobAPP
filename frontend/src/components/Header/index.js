@@ -52,8 +52,7 @@ export default function Header(props) {
 <nav class="navbar is-black" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/">
-                <img src="https://i.postimg.cc/3NT9t3r5/events.png" width="75" height="80">
-                </img>
+                
                 </a>
 
               <div class="navbar-start">
