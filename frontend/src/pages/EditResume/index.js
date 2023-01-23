@@ -34,7 +34,7 @@ function EditResume() {
 		<div className='row row-cols-sm-2 row-cols-md-4 mx-auto'>
 			<Form onSubmit={handleSubmit} className='mx-auto'>
 				<br></br>
-
+				
 				<h3>Edit Resume</h3>
 
 				<Form.Group className='mb-3'>
