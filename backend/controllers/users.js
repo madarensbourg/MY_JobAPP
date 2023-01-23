@@ -66,10 +66,10 @@ router.get('/', async (req, res) => {
 // show
 router.get('/:id', async (req, res) => {
 	const foundUser = await db.User.findById(req.params.id);
-	const userPosts = await db.Post.find({ user: foundUser._id });
+	// const userPosts = await db.Post.find({ user: foundUser._id });
 	res.json({
 		user: foundUser,
-		posts: userPosts,
+		// posts: userPosts,
 	});
 });
 
@@ -83,7 +83,7 @@ router.put('/:id', isAuthenticated, async (req, res) => {
 
 //delete
 router.delete('/:id', isAuthenticated, async (req, res) => {
-	await db.Post.deleteMany({ user: req.params.id });
+	// await db.Post.deleteMany({ user: req.params.id });
 	await db.User.findByIdAndDelete(req.params.id);
 	res.sendStatus(200);
 });
