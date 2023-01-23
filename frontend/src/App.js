@@ -85,7 +85,7 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Home getResumes={getResumes} />} />
 				<Route
-					path='/logins'
+					path='/login'
 					element={
 						<Login
 							setLogInStatus={setLogInStatus}
@@ -96,7 +96,7 @@ function App() {
 					}
 				/>
 				<Route
-					path='/signups'
+					path='/signup'
 					element={
 						<SignUp
 							setLogInStatus={setLogInStatus}
