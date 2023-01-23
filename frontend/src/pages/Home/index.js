@@ -18,8 +18,7 @@ export default function Home({ getResumes }) {
 						<Card.Img variant='top' src={resumepng} />
 						<Card.Body>
 							<Card.Text>
-								From sandy beaches to snow-capped mountains, California has a
-								hike for lovers of any terrain.
+								Check Out Your Resume Profile Here
 							</Card.Text>
 						</Card.Body>
 					</Link>
@@ -34,8 +33,7 @@ export default function Home({ getResumes }) {
 						<Card.Img variant='top' src={clpic} />
 						<Card.Body>
 							<Card.Text>
-								Adventure your way through lush forests and maybe even encounter
-								a world-renowned winery or two.
+								Cover Letters are just as important as any Resume! Click Here!
 							</Card.Text>
 						</Card.Body>
 					</Link>

@@ -7,6 +7,28 @@ const admin_user = [
     password: "1234567890"
 }
 ]
+const initial_coverletters = [
+	{
+		name: 'Miguel Darensbourg',
+		phonenumber: '(619) 822-4756',
+		email: 'madarens@ucsd.edu',
+		contactTitle: 'Mr. John Doe Hiring Recruiter johndoe@hiration.com ',
+		opening: 'Associate Engineer Software - DevSecOps',
+		body: 'I am writing to express my interest in the Associate Engineer Software position at [DevSecOps Company]. I am confident that I have the ideal background and qualifications to make an immediate and positive impact on your team. /n As a recent graduate from [University], I have a degree in Computer Engineering and extensive knowledge of software engineering, DevOps, and security processes. I am passionate about staying up to date with developments in DevSecOps and have a strong understanding of the principles and practices of this field. In addition, I have experience working in various programming languages, such as Python, JavaScript, and Java, as well as experience with cloud platforms, such as AWS and GCP./n During my time at [University], I participated in a variety of software engineering projects, including developing applications for Android and iOS devices. I also worked on developing a web application that integrated a database with a user-friendly interface. My experience in the software development process, combined with my knowledge of DevSecOps principles, makes me a great fit for this position.',
+		closing:
+			'I am confident that I can bring value to [DevSecOps Company], and I am eager to contribute to the success of your team. I am available for an interview at any time and I look forward to learning more about this position and how I can help your team./nSincerely,/n Miguel Darensbourg',
+	},
+	{
+		name: 'Miguel Darensbourg',
+		phonenumber: '(619) 822-4756',
+		email: 'madarens@ucsd.edu',
+		contactTitle: 'Mr. John Doe Hiring Recruiter johndoe@hiration.com ',
+		opening:'Junior Software Developer - Curran.An Emerging full stack web developer with a background in both the arts and sciences and a passion for creativity. I work with fellow prominent designers and developers alike to build interactive and beautiful websites. I have worked as both a web developer  and designer for different clients looking to improve their site performance, build out UI views, UX user testing, or  spearhead a codebase from the ground up. If you need a developer and designer rolled in one, I’m your man.',
+		body: 'Curran LLC Remote / Seattle, Washington Full Stack Developer August 2020 - Present + Spearheaded the frontend creation of a marketing website using nuxt.js for the benefits of SEO + Oversaw Google Tag Manager and Analytics to give insight on user behaviour and rollout server side A/B tests  + Maintained and added to custom Laravel CMS, allowing the content and marketing team to add new content with  ease. /n Executed best practice front end strategies, emphasizing site speed, compatibility with web crawlers, cross  browser compatibility and responsive design. /n Reduced landing page bounce rate by 25% and increased pages per session by 45% since hire Freelance Remote  Contract Web Developer and Designer October 2018 - Present + Worked with clients looking to stand up websites in Wordpress, GoDaddy and Shopify, as well as customized  themes to client needs /n Participated in frontend React development for different applications looking for initial funding Collaborated with other developers in a ticketing task flow using Phabricator and Git version control  + Implemented UI designer wireframes and mockups in HTML, CSS, Javascript, React, and Vue /n University of California: San Diego, California Logic Teaching Assistant September 2013 - June 2015  Responsible for one-on-one instruction in logic course materials for a class of over 100 students +Held weekly office hours for students to drop-in and ask questions, as well as proctor all exams for the course + Required to give professional instruction and catered lessons on the nuance of deductive logic. ',
+		closing:
+			'I am confident that my skills and experience make me an ideal candidate for the software engineering position. I am excited to take on the challenges that this role presents and eager to contribute to the success of your team. Thank you for your time and consideration.',
+	},
+];
 
 const initial_resumes = [
     {
@@ -46,11 +68,27 @@ db.Resume.deleteMany({}, (err, resumes) => {
 		}
 	});
 
+	db.Coverletter.deleteMany({}, (err, coverletter) => {
+		if (err) {
+			console.log('Error occured in remove', err);
+		} else {
+			console.log('Removed all coverletters');
+		}
+	});
+
 	db.Resume.create(initial_resumes, (err, resumes) => {
 		if (err) {
 			console.log('Error on creating resumes:', err);
 		} else {
 			console.log('Created', resumes.length, 'resumes');
+		}
+	});
+
+	db.Coverletter.create(initial_coverletters, (err, coverletters) => {
+		if (err) {
+			console.log('Error on creating coverletters:', err);
+		} else {
+			console.log('Created', coverletters.length, 'coverletters');
 		}
 	});
 

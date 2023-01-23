@@ -7,6 +7,14 @@ const router = express.Router();
 const jwt = require('jwt-simple');
 const config = require('../config/config');
 
+// check if user is Authenticated 
+function isAuthenticated(req, res, next) {
+	if (req.headers.authorization) {
+		next();
+	} else {
+		res.sendStatus(401);
+	}
+}
 
 //index route
 router.get('/', async (req, res) => {

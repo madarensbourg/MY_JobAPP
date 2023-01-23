@@ -11,20 +11,20 @@ import EditResume from './pages/EditResume';
 import CreateResume from './pages/CreateResume';
 import Header from './components/Header';
 import Login from './pages/Login'
-
-
-
-
+import EditCoverletter from './pages/EditCoverletter'
+import ShowCoverletter from './pages/ShowCoverletter';
+import { getUser } from './utils/api';
 
 function App() {
 	// STATE
 	const [myResumes, setMyResumes] = useState([]);
 	const [myCoverletters, setMyCoverLettters] = useState([]);
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [user, setUser] = useState({});
+	const [isLoggedIn, setLogInStatus] = useState(false);
 	const [shownResume, setShownResume] = useState({});
 	const [shownCoverletter, setShownCoverletter] = useState({});
 	const [resumeData, setResumeData] = useState([]);
+	const [visibleItem, setVisibleItem] = useState({});
+	const [user, setUser] = useState([]);
 
 	// function to grab resumes
 	async function getResumes() {
@@ -38,46 +38,86 @@ function App() {
 		);
 		setMyCoverLettters(allCoverletters.data);
 	}
-	// function to grab resumes 
+	// function to grab resumes
 	async function getResume(id) {
-		const shownResumeData = await axios.get(`http://localhost:5001/resume/${id}`);
+		const shownResumeData = await axios.get(
+			`http://localhost:5001/resume/${id}`
+		);
 		console.log('this is shownresume route data', shownResumeData.data);
 		setShownResume(shownResumeData.data);
 	}
+
+	// function to grab coverletters
+	async function getCoverletter(id) {
+		const shownCoverletterData = await axios.get(
+			`http://localhost:5001/coverletter/${id}`
+		);
+		console.log('this is showncoverletter route data', shownCoverletterData.data);
+		setShownCoverletter(shownCoverletterData.data);
+	}
+
 	useEffect(() => {
+		if (localStorage.token) {
+			setLogInStatus(true);
+			try {
+				getUser(localStorage.user_id).then((foundUser) => {
+					setUser(foundUser.user);
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		}
 		getResumes();
 		getCoverletters();
-
 	}, []);
+
+	
 
 	return (
 		<div className='App'>
-			<Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+			<Header
+				setLogInStatus={setLogInStatus}
+				isLoggedIn={isLoggedIn}
+				setUser={setUser}
+				user={user}
+			/>
 			<h1>Prepare For Your Dream Job Today!</h1>
 			<Routes>
 				<Route path='/' element={<Home getResumes={getResumes} />} />
 				<Route
 					path='/login'
 					element={
-						<Login setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+						<Login
+							setLogInStatus={setLogInStatus}
+							isLoggedIn={isLoggedIn}
+							setUser={setUser}
+							user={user}
+						/>
 					}
 				/>
 				<Route
 					path='/signup'
 					element={
-						<SignUp setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+						<SignUp
+							setLogInStatus={setLogInStatus}
+							isLoggedIn={isLoggedIn}
+							setUser={setUser}
+						/>
 					}
 				/>
 				<Route
 					path='/resumes'
 					element={<Resumes myResumes={myResumes} getResume={getResume} />}
 				/>
-				<Route path='/createresume' element={<CreateResume setResumeData={setResumeData}/>} />
+				<Route
+					path='/createresume'
+					element={<CreateResume setResumeData={setResumeData} />}
+				/>
 				<Route
 					path='/coverletters'
 					element={
 						<Coverletters
-							getCoverletters={getCoverletters}
+							getCoverletter={getCoverletter}
 							myCoverletters={myCoverletters}
 						/>
 					}
@@ -93,7 +133,18 @@ function App() {
 						/>
 					}
 				/>
+				<Route
+					exact
+					path='/mycoverletter/:id'
+					element={
+						<ShowCoverletter
+							shownCoverletter={shownCoverletter}
+							isLoggedIn={isLoggedIn}
+						/>
+					}
+				/>
 				<Route path='/editresume/:id' element={<EditResume />} />
+				<Route path='/editcoverletter/:id' element={<EditCoverletter />} />
 			</Routes>
 		</div>
 	);

@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 import { deleteResume } from '../../utils/api';
 
 export default function ShowResume({ shownResume, getResumes }) {
-	const initialState = [];
-	const [editDeletedOptions, setEditDeletedOptions] = useState(initialState);
+	
 	console.log(shownResume)
 	return (
 		<div className='show-resume-bg'>

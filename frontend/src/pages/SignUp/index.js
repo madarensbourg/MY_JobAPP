@@ -9,26 +9,35 @@ import Form from 'react-bootstrap/Form';
 
 
 function SignUp(props) {
-	const [formData, setFormData] = useState({
-		username: '',
-		password: '',
-	});
 	const navigate = useNavigate();
+	const initialState = { username: '', password: '' };
+	const [formData, setFormData] = useState(initialState);
+	const [userError, setUserError] = useState('');
 
-	function handleChange(event) {
-		setFormData({ ...formData, [event.target.id]: event.target.value });
+	const handleChange = (event) => {
+		setFormData({ ...formData, [event.target.name]: event.target.value });
+	};
+
+	function handleSubmit(event) {
+		event.preventDefault();
+		createUser(formData)
+			.then((data) => {
+				localStorage.token = data.token;
+				localStorage.user_id = data.user._id;
+				navigate('/login');
+			})
+			.catch(function (error) {
+				if (error.response) {
+					if (error.response.status === 401) {
+						setUserError(
+							'This username already exists! Please enter another. '
+						);
+					}
+				}
+			});
 	}
 
-	// Handle submit function for login and signup forms
-	function handleSubmit(e) {
-		e.preventDefault();
-		createUser(formData).then((data) => {
-			localStorage.token = data.token;
-			props.setIsLoggedIn(true);
-		});
-	}
-
-	// // redirect to home page if logged in
+	// redirect to home page if logged in
 	useEffect(() => {
 		if (props.isLoggedIn) {
 			navigate('/');
@@ -38,10 +47,11 @@ function SignUp(props) {
 	return (
 		<div>
 			<h2>Sign Up</h2>
+			<p style={{ color: 'red' }}>{userError}</p>
 			<div className='row row-cols-sm-2 row-cols-md-4 mx-auto login'>
 				<Form className='mb-3 mx-auto'>
-					<Form.Group className='mb-3' controlId='formBasicEmail'>
-						<Form.Label>Email</Form.Label>
+					<Form.Group className='mb-3'>
+						<Form.Label>Username</Form.Label>
 						<Form.Control
 							type='email'
 							placeholder='Enter email'
@@ -52,7 +62,7 @@ function SignUp(props) {
 						/>
 					</Form.Group>
 
-					<Form.Group className='mb-3' controlId='formBasicPassword'>
+					<Form.Group className='mb-3'>
 						<Form.Label>Password</Form.Label>
 						<Form.Control
 							type='password'
