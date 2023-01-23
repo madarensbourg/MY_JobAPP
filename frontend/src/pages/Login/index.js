@@ -59,7 +59,7 @@ export default function Login(props) {
 						<Form.Control
 							type='text'
 							// placeholder='Enter email'
-							id='username'
+							name='username'
 							onChange={handleChange}
 							value={formData.username}
 							required
@@ -71,7 +71,7 @@ export default function Login(props) {
 						<Form.Control
 							type='password'
 							// placeholder='Password'
-							id='password'
+							name='password'
 							onChange={handleChange}
 							value={formData.password}
 							required
