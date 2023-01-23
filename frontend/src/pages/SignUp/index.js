@@ -57,7 +57,7 @@ function SignUp(props) {
 							placeholder='Enter email'
 							id='username'
 							onChange={handleChange}
-							value={formData.username}
+							defaultValue={formData.username}
 							required
 						/>
 					</Form.Group>
@@ -69,7 +69,7 @@ function SignUp(props) {
 							placeholder='Password'
 							id='password'
 							onChange={handleChange}
-							value={formData.password}
+							defaultValue={formData.password}
 							required
 						/>
 					</Form.Group>

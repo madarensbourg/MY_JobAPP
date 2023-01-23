@@ -59,9 +59,9 @@ export default function Login(props) {
 						<Form.Control
 							type='text'
 							// placeholder='Enter email'
-							name='username'
+							id='username'
 							onChange={handleChange}
-							value={formData.username}
+							defaultValue={formData.username}
 							required
 						/>
 					</Form.Group>
@@ -71,9 +71,9 @@ export default function Login(props) {
 						<Form.Control
 							type='password'
 							// placeholder='Password'
-							name='password'
+							id='password'
 							onChange={handleChange}
-							value={formData.password}
+							defaultValue={formData.password}
 							required
 						/>
 					</Form.Group>
