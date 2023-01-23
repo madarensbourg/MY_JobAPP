@@ -13,21 +13,18 @@ import Header from './components/Header';
 import Login from './pages/Login'
 import EditCoverletter from './pages/EditCoverletter'
 import ShowCoverletter from './pages/ShowCoverletter';
-
-
-
-
+import { getUser } from './utils/api';
 
 function App() {
 	// STATE
 	const [myResumes, setMyResumes] = useState([]);
 	const [myCoverletters, setMyCoverLettters] = useState([]);
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [user, setUser] = useState({});
+	const [isLoggedIn, setLogInStatus] = useState(false);
 	const [shownResume, setShownResume] = useState({});
 	const [shownCoverletter, setShownCoverletter] = useState({});
 	const [resumeData, setResumeData] = useState([]);
 	const [visibleItem, setVisibleItem] = useState({});
+	const [user, setUser] = useState([]);
 
 	// function to grab resumes
 	async function getResumes() {
@@ -60,73 +57,52 @@ function App() {
 	}
 
 	useEffect(() => {
+		if (localStorage.token) {
+			setLogInStatus(true);
+			try {
+				getUser(localStorage.user_id).then((foundUser) => {
+					setUser(foundUser.user);
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		}
 		getResumes();
 		getCoverletters();
 	}, []);
 
-	//   async function getIndexRoute() {
-
-	// 	}
-
-	//  async function getUser() {
-	// 		const config = {
-	// 			headers: {
-	// 				Authorization: localStorage.getItem('token'),
-	// 			},
-	// 		};
-	// 		const userData = await axios.get('http://localhost:5001/user', config);
-	// 		console.log(userData.data);
-	// 		setUser(userData.data);
-	// 	}
-	// 	// API REQUEST ON COMPONENT MOUNT
-	// 	useEffect(() => {
-	// 		getIndexRoute();
-	// 		if (localStorage.token) {
-	// 			getUser();
-	// 			setIsLoggedIn(true);
-	// 		}
-	// 	}, []);
-
-	// 	// `onClick` HANDLER
-	// 	const setVisibility = (item) => {
-	// 		setVisibleItem(item);
-	// 	};
-
-	// 	const handleSubmit = async (e, formData) => {
-	// 		e.preventDefault();
-	// 		const res = await axios.post(
-	// 			`http://localhost:5001/user/${formData.form}`,
-	// 			{
-	// 				username: formData.username,
-	// 				password: formData.password,
-	// 			}
-	// 		);
-	// 		console.log(res.data);
-	// 		localStorage.token = res.data.token;
-	// 		setIsLoggedIn(true);
-	// 	};
-
-	// 	const handleLogOut = () => {
-	// 		localStorage.clear();
-	// 		setIsLoggedIn(false);
-	// 	};
+	
 
 	return (
 		<div className='App'>
-			<Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+			<Header
+				setLogInStatus={setLogInStatus}
+				isLoggedIn={isLoggedIn}
+				setUser={setUser}
+				user={user}
+			/>
 			<h1>Prepare For Your Dream Job Today!</h1>
 			<Routes>
 				<Route path='/' element={<Home getResumes={getResumes} />} />
 				<Route
 					path='/login'
 					element={
-						<Login setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+						<Login
+							setLogInStatus={setLogInStatus}
+							isLoggedIn={isLoggedIn}
+							setUser={setUser}
+							user={user}
+						/>
 					}
 				/>
 				<Route
 					path='/signup'
 					element={
-						<SignUp setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+						<SignUp
+							setLogInStatus={setLogInStatus}
+							isLoggedIn={isLoggedIn}
+							setUser={setUser}
+						/>
 					}
 				/>
 				<Route
@@ -139,7 +115,12 @@ function App() {
 				/>
 				<Route
 					path='/coverletters'
-					element={<Coverletters getCoverletter={getCoverletter} myCoverletters={myCoverletters} />}
+					element={
+						<Coverletters
+							getCoverletter={getCoverletter}
+							myCoverletters={myCoverletters}
+						/>
+					}
 				/>
 				<Route
 					exact

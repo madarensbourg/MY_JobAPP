@@ -34,7 +34,7 @@ function EditResume() {
 			<Form onSubmit={handleSubmit} className='mx-auto'>
 				<br></br>
 
-				<h3>Edit Cover Letter!</h3>
+				<h3>Edit Cover</h3>
 
 				<Form.Group className='mb-3'>
 					<Form.Label>Name: </Form.Label>
@@ -56,7 +56,7 @@ function EditResume() {
 						id='phonenumber'
 						name='phonenumber'
 						onChange={handleChange}
-						value={formState.email || ''}
+						value={formState.phonenumber || ''}
 						required
 					/>
 				</Form.Group>

@@ -2,8 +2,13 @@ import axios from 'axios';
 
 // create user
 export async function createUser(formData) {
-    const { data } = await axios.post('http://localhost:5001/user/signup', formData)
-    return data
+    try{
+        console.log('this is forData api', formData);
+        const { data } = await axios.post('http://localhost:5001/user/signup', formData)
+        return data
+    } catch(error){
+    console.log(error)
+    }
 };
 
 // log in to user account
@@ -12,14 +17,44 @@ export async function loginToAccount(formData) {
     return data
 }
 
+//getUser
+export async function getUser(userid) {
+  const { data } = await axios.get(`user/${userid}`);
+  return data;
+}
+// // find user on mount
+// export async function getCurrentUser() {
+//     const config = {
+// 			headers: {
+// 				Authorization: localStorage.token,
+// 			},
+// 		};
+// 		// Grab user data from database
+// 		const {data} = await axios.get(
+// 			'http://localhost:5001/user/token',
+// 			config
+// 	    );
+// 	return data;
+// }
+
 // Create resume Route
 export async function createResume(formData) {
-	const { data } = await axios.post('http://localhost:5001/resume', formData);
+    const config = {
+        headers: {
+            'Authorization': localStorage.getItem('token')
+        }
+    }
+	const { data } = await axios.post('http://localhost:5001/resume', formData, config);
 	return data;
 }
 // create Coverletter
 export async function createCoverletter(formState) {
-    const { data } = await axios.post('http://localhost:5001/coverletter', formState)
+    const config = {
+			headers: {
+				Authorization: localStorage.getItem('token'),
+			},
+		};
+    const { data } = await axios.post('http://localhost:5001/coverletter', formState, config)
     return data
 };
 

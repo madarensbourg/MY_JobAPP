@@ -28,9 +28,9 @@ export default function Header(props) {
 						<Nav.Link
 							className='log'
 							onClick={() => {
-								props.setIsLoggedIn(false);
+								props.setLogInStatus(false);
+                                props.setUser({});
 								localStorage.clear();
-								console.log(localStorage.token);
 							}}>
 							Log Out
 						</Nav.Link>{' '}
