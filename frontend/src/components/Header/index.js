@@ -49,17 +49,34 @@ export default function Header(props) {
 		} else {
 			setNavItems(
 				initialState.concat([
-					<Nav className='me-auto' key='2'>
-						<Nav.Link className='nav-item' href='/login' key='2'>
-							Log In
-						</Nav.Link>{' '}
-						<Nav.Link className='nav-item' href='/signup' key='3'>
-							Sign Up
-						</Nav.Link>{' '}
-						<Nav.Link className='nav-item' href='/'>
-							Home
-						</Nav.Link>
-					</Nav>,
+<nav class="navbar is-black" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                <img src="https://i.postimg.cc/3NT9t3r5/events.png" width="75" height="80">
+                </img>
+                </a>
+
+              <div class="navbar-start">
+            <a class="navbar-item">
+            <Link to='/'>Home</Link></a>
+            <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button has-background-is-danger">
+            <strong>
+            <Link to='/signup'>Sign Up</Link>
+            </strong>
+            </a>
+            <a class="button has-background-is-danger">
+            <Link to='/login'>Login</Link>
+            </a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        </nav>,
 				])
 			);
 		}
