@@ -55,7 +55,7 @@ function SignUp(props) {
 						<Form.Control
 							type='email'
 							placeholder='Enter email'
-							id='username'
+							name='username'
 							onChange={handleChange}
 							value={formData.username}
 							required
@@ -67,7 +67,7 @@ function SignUp(props) {
 						<Form.Control
 							type='password'
 							placeholder='Password'
-							id='password'
+							name='password'
 							onChange={handleChange}
 							value={formData.password}
 							required
