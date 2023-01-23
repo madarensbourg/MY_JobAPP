@@ -28,20 +28,20 @@ function App() {
 
 	// function to grab resumes
 	async function getResumes() {
-		const allResumes = await axios.get(`http://localhost:5001/resume`);
+		const allResumes = await axios.get(`resume`);
 		setMyResumes(allResumes.data);
 	}
 
 	async function getCoverletters() {
 		const allCoverletters = await axios.get(
-			`http://localhost:5001/coverletter`
+			`coverletter`
 		);
 		setMyCoverLettters(allCoverletters.data);
 	}
 	// function to grab resumes
 	async function getResume(id) {
 		const shownResumeData = await axios.get(
-			`http://localhost:5001/resume/${id}`
+			`resume/${id}`
 		);
 		console.log('this is shownresume route data', shownResumeData.data);
 		setShownResume(shownResumeData.data);
@@ -50,7 +50,7 @@ function App() {
 	// function to grab coverletters
 	async function getCoverletter(id) {
 		const shownCoverletterData = await axios.get(
-			`http://localhost:5001/coverletter/${id}`
+			`coverletter/${id}`
 		);
 		console.log('this is showncoverletter route data', shownCoverletterData.data);
 		setShownCoverletter(shownCoverletterData.data);

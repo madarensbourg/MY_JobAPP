@@ -4,7 +4,7 @@ import axios from 'axios';
 export async function createUser(formData) {
     try{
         console.log('this is forData api', formData);
-        const { data } = await axios.post('http://localhost:5001/user/signup', formData)
+        const { data } = await axios.post('user/signup', formData)
         return data
     } catch(error){
     console.log(error)
@@ -13,7 +13,7 @@ export async function createUser(formData) {
 
 // log in to user account
 export async function loginToAccount(formData) {
-    const { data } = await axios.post('http://localhost:5001/user/login', formData)
+    const { data } = await axios.post('user/login', formData)
     return data
 }
 
@@ -44,7 +44,7 @@ export async function createResume(formData) {
             'Authorization': localStorage.getItem('token')
         }
     }
-	const { data } = await axios.post('http://localhost:5001/resume', formData, config);
+	const { data } = await axios.post('resume', formData, config);
 	return data;
 }
 // create Coverletter
@@ -54,43 +54,43 @@ export async function createCoverletter(formState) {
 				Authorization: localStorage.getItem('token'),
 			},
 		};
-    const { data } = await axios.post('http://localhost:5001/coverletter', formState, config)
+    const { data } = await axios.post('coverletter', formState, config)
     return data
 };
 
 // edit resume, get data
 export async function editResume(id) {
-    const editResumeData = await axios.get(`http://localhost:5001/resume/${id}`)
+    const editResumeData = await axios.get(`resume/${id}`)
     return editResumeData.data
 };
 
 // edit Coverletter, get data
 export async function editCoverletter(id) {
-    const editCoverLetterData = await axios.get(`http://localhost:5001/coverletter/${id}`)
+    const editCoverLetterData = await axios.get(`coverletter/${id}`)
     return editCoverLetterData.data
 };
 
 
 // update Resume
 export async function updateResume(id, formState) {
-    const updatedData = await axios.put(`http://localhost:5001/resume/${id}`, formState)
+    const updatedData = await axios.put(`resume/${id}`, formState)
     return updatedData.data
 };
 
 // update Coverletter
 export async function updateCoverletter(id, formState) {
-    const updatedData = await axios.put(`http://localhost:5001/coverletter/${id}`, formState)
+    const updatedData = await axios.put(`coverletter/${id}`, formState)
     return updatedData.data
 };
 
 // delete Resume
 export async function deleteResume(id) {
-    const deleteData = await axios.delete(`http://localhost:5001/resume/${id}`)
+    const deleteData = await axios.delete(`resume/${id}`)
     return console.log('deleted!')
 };
 
 // delete Coverletter
 export async function deleteCoverletter(id) {
-    const deleteData = await axios.delete(`http://localhost:5001/coverletter/${id}`)
+    const deleteData = await axios.delete(`coverletter/${id}`)
     return console.log('deleted!')
 };
